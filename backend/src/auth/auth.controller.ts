@@ -6,8 +6,12 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post("/signup")
-  signup() {}
+  signup() {
+    return { message: "Signed up!" };
+  }
 
   @Post("/signin")
-  signin() {}
+  signin() {
+    return { message: "Signed in!" };
+  }
 }
