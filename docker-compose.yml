@@ -1,42 +1,39 @@
 name: free-dict
 
 services:
-  free-dict-db:
-    container_name: mongo
+  db:
+    container_name: database
     restart: unless-stopped
     image: mongo:latest
-    ports: 
+    ports:
       - "27017:27017"
-    volumes:
-      - mongodb_data:/data/db
     environment:
-      MONGODB_INITDB_ROOT_USERNAME: ${MONGODB_INITDB_ROOT_USERNAME}
-      MONGODB_INITDB_ROOT_PASSWORD: ${MONGODB_INITDB_ROOT_PASSWORD} 
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - mongo_data:/data/db
 
-  free-dict-back:
+  back:
     container_name: backend
     restart: unless-stopped
-    env_file: .env
+    env_file: ./backend/.env
     build:
       context: ./backend
       dockerfile: Dockerfile
-    environment: 
-      MONGO_URI: ${MONGO_URI}
-    ports: 
+    ports:
       - "${BACKEND_PORT}:${BACKEND_PORT}"
     depends_on:
-      - mongo
+      - db
 
-  free-dict-front:
+  front:
     container_name: frontend
     restart: unless-stopped
-    env_file: .env
-    build: 
+    env_file: ./frontend/.env
+    build:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
       - "${FRONTEND_PORT}:5173"
 
-
-
-
+volumes:
+  mongo_data:
