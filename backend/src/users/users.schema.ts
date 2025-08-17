@@ -11,6 +11,9 @@ export class User extends Document {
 
   @Prop()
   password: string;
+
+  @Prop([{ word: String, added: { type: Date, default: Date.now } }])
+  favoriteWords: { word: string; added: Date }[];
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

@@ -13,27 +13,5 @@ services:
     volumes:
       - mongo_data:/data/db
 
-  back:
-    container_name: backend
-    restart: unless-stopped
-    env_file: ./backend/.env
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    ports:
-      - "${BACKEND_PORT}:${BACKEND_PORT}"
-    depends_on:
-      - db
-
-  front:
-    container_name: frontend
-    restart: unless-stopped
-    env_file: ./frontend/.env
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    ports:
-      - "${FRONTEND_PORT}:5173"
-
 volumes:
   mongo_data:
