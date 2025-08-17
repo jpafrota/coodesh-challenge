@@ -2,6 +2,18 @@
 
 This is a full stack Free Dictionary app with API + Frontend.
 
+## How to run project?
+
+The instructions are inside each folder (backend/frontend)
+
+To **run the database**, run this command on the root:
+
+If using Docker CLI:
+`docker-compose up -d --build`
+
+If using Docker Desktop:
+`docker compose up -d --build`
+
 ## Implementation process
 
 ## Backend

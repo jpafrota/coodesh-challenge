@@ -16,3 +16,7 @@ First of all, copy environment variables to `.env` file and make sure db is runn
 
 **Start (prod)**
 `yarn start:prod`
+
+### Populate database with words from GitHub
+Run the command below:
+`yarn import-words`
