@@ -1,7 +1,16 @@
-import { Controller, Delete, Get, Param, Post } from "@nestjs/common";
+import {
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  UseGuards,
+} from "@nestjs/common";
+import { JwtAuthGuard } from "src/auth/jwt-auth.guard";
 import { DictionaryService } from "./dictionary.service";
 
 @Controller("entries/en")
+@UseGuards(JwtAuthGuard)
 export class DictionaryController {
   constructor(private readonly dictionaryService: DictionaryService) {}
 
